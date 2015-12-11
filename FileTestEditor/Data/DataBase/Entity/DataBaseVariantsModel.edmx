@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_quest_egeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="db_quest_egeModelStoreContainer">
+          <EntitySet Name="predmet" EntityType="db_quest_egeModel.Store.predmet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Quest" EntityType="db_quest_egeModel.Store.Quest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Variant_lock" EntityType="db_quest_egeModel.Store.Variant_lock" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="predmet">
+          <Key>
+            <PropertyRef Name="Kod_pr" />
+          </Key>
+          <Property Name="Kod_pr" Type="int" Nullable="false" />
+          <Property Name="Name_pr" Type="nvarchar" MaxLength="50" />
+          <Property Name="Variant_count" Type="int" />
+        </EntityType>
+        <EntityType Name="Quest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="qst" Type="image" />
+          <Property Name="right_answer" Type="nvarchar" MaxLength="255" />
+          <Property Name="number_order" Type="int" />
+          <Property Name="variant" Type="int" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+          <Property Name="edu_object" Type="int" />
+          <Property Name="name_qst" Type="nvarchar" MaxLength="50" />
+          <Property Name="lock" Type="bit" />
+        </EntityType>
+        <EntityType Name="Variant_lock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="edu_object" Type="int" />
+          <Property Name="Variant" Type="int" />
+          <Property Name="lock" Type="bit" />
+          <Property Name="ip_lock" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_quest_egeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="Entities">
+          <EntitySet Name="Quests" EntityType="db_quest_egeModel.Quest" />
+          <EntitySet Name="Variant_lock" EntityType="db_quest_egeModel.Variant_lock" />
+          <EntitySet Name="predmet" EntityType="db_quest_egeModel.predmet" />
+        </EntityContainer>
+        <EntityType Name="Quest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="qst" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="right_answer" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="number_order" Type="Int32" />
+          <Property Name="variant" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="edu_object" Type="Int32" />
+          <Property Name="name_qst" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="lock" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Variant_lock">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="edu_object" Type="Int32" />
+          <Property Name="Variant" Type="Int32" />
+          <Property Name="lock" Type="Boolean" />
+          <Property Name="ip_lock" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="predmet">
+          <Key>
+            <PropertyRef Name="Kod_pr" />
+          </Key>
+          <Property Type="Int32" Name="Kod_pr" Nullable="false" />
+          <Property Type="String" Name="Name_pr" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Variant_count" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="db_quest_egeModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Quests">
+            <EntityTypeMapping TypeName="db_quest_egeModel.Quest">
+              <MappingFragment StoreEntitySet="Quest">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="qst" ColumnName="qst" />
+                <ScalarProperty Name="right_answer" ColumnName="right_answer" />
+                <ScalarProperty Name="number_order" ColumnName="number_order" />
+                <ScalarProperty Name="variant" ColumnName="variant" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="edu_object" ColumnName="edu_object" />
+                <ScalarProperty Name="name_qst" ColumnName="name_qst" />
+                <ScalarProperty Name="lock" ColumnName="lock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Variant_lock">
+            <EntityTypeMapping TypeName="db_quest_egeModel.Variant_lock">
+              <MappingFragment StoreEntitySet="Variant_lock">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="edu_object" ColumnName="edu_object" />
+                <ScalarProperty Name="Variant" ColumnName="Variant" />
+                <ScalarProperty Name="lock" ColumnName="lock" />
+                <ScalarProperty Name="ip_lock" ColumnName="ip_lock" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="predmet">
+            <EntityTypeMapping TypeName="db_quest_egeModel.predmet">
+              <MappingFragment StoreEntitySet="predmet">
+                <ScalarProperty Name="Variant_count" ColumnName="Variant_count" />
+                <ScalarProperty Name="Name_pr" ColumnName="Name_pr" />
+                <ScalarProperty Name="Kod_pr" ColumnName="Kod_pr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DataBaseVariantsModel">
+        <EntityTypeShape EntityType="db_quest_egeModel.Quest" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_quest_egeModel.Variant_lock" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_quest_egeModel.predmet" Width="1.5" PointX="2.625" PointY="3.25" Height="1.5956835937499996" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
